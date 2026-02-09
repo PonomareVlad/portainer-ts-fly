@@ -1,0 +1,24 @@
+app = "portainer-ts-fly"
+primary_region = "fra"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[env]
+  PORT = "41641"
+
+[[services]]
+  protocol = "udp"
+  internal_port = 41641
+  processes = ["app"]
+  auto_stop_machines = false
+  auto_start_machines = false
+
+  [[services.ports]]
+    port = 41641
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 100
+    soft_limit = 75
+
+[deploy]
+  strategy = "immediate"
