@@ -1,14 +1,10 @@
-FROM alpine:latest as builder
-WORKDIR /app
-COPY . ./
-# This is where one could build the application code as well.
-
 # https://docs.docker.com/develop/develop-images/multistage-build/#use-multi-stage-builds
-FROM alpine:latest
+FROM portainer/portainer-ce:alpine
 RUN apk update && apk add ca-certificates iptables ip6tables && rm -rf /var/cache/apk/*
 
 # Copy binary to production image.
-COPY --from=builder /app/start.sh /app/start.sh
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
 
 # Copy Tailscale binaries from the tailscale image on Docker Hub.
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /app/tailscaled
