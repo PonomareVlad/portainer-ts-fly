@@ -22,3 +22,7 @@ kill_timeout = "5s"
 
 [deploy]
   strategy = "immediate"
+
+[mounts]
+  source = "portainer_data"
+  destination = "/data"
