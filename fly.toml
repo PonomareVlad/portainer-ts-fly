@@ -1,5 +1,10 @@
-app = "portainer-ts-fly"
-primary_region = "fra"
+# fly.toml app configuration file generated for portainer-ts-fly on 2026-03-07T20:10:45Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'portainer-ts-fly'
+primary_region = 'fra'
 kill_signal = "SIGINT"
 kill_timeout = 10
 
@@ -7,7 +12,10 @@ kill_timeout = 10
   policy = "always"
 
 [[vm]]
-  size = "shared-cpu-1x"
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+  memory_mb = 256
 
 [deploy]
   strategy = "immediate"
