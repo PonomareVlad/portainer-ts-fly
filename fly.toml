@@ -1,11 +1,6 @@
-# fly.toml app configuration file generated for portainer-ts-fly on 2026-03-07T20:10:45Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'portainer-ts-fly'
-primary_region = 'fra'
+app = 'portainer'
 swap_size_mb = 256
+primary_region = 'fra'
 
 [[restart]]
   policy = "always"
