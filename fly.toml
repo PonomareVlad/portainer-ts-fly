@@ -3,6 +3,15 @@ primary_region = "fra"
 kill_signal = "SIGINT"
 kill_timeout = 10
 
+[[services]]
+  protocol = "udp"
+  internal_port = 41641
+  auto_stop_machines = false
+  auto_start_machines = false
+
+  [[services.ports]]
+    port = 41641
+
 [[restart]]
   policy = "always"
 
