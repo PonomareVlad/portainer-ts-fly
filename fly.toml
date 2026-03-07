@@ -1,17 +1,23 @@
+# fly.toml app configuration file generated for portainer-ts-fly on 2026-03-07T22:18:10Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
 app = 'portainer-ts-fly'
 primary_region = 'fra'
-swap_size_mb = 256
 
-[[restart]]
-  policy = "always"
+[build]
+
+[http_service]
+  internal_port = 9000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
 
 [[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
-  memory = '256mb'
-  cpu_kind = 'shared'
-  size = 'shared-cpu-1x'
-  persist_rootfs = "always"
-
-[deploy]
-  strategy = "immediate"
