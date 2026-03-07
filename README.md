@@ -10,7 +10,7 @@ This deploys [Portainer CE](https://www.portainer.io/) on [Fly.io](https://fly.i
 
 - **Portainer** binds to `127.0.0.1:9000` (HTTP) and `127.0.0.1:9443` (HTTPS)
 - **Tailscale** exposes Portainer via `tailscale serve` (443 → 9000) for private TLS access
-- **UDP port 41641** is exposed for Tailscale WireGuard / DERP relay traffic
+- **No `[[services]]` section** — prevents Fly.io from allocating a public IP; Tailscale connects via DERP relays
 - Persistent data stored on a Fly.io volume mounted at `/data`
 
 ## Configuration
@@ -21,10 +21,8 @@ This deploys [Portainer CE](https://www.portainer.io/) on [Fly.io](https://fly.i
 |---|---|---|
 | `primary_region` | `fra` | Deploy region (Frankfurt) |
 | `kill_timeout` | `10` | Extra time for Tailscale + Portainer graceful shutdown |
-| `auto_stop_machines` | `"off"` | Always-on service, must not be stopped automatically |
-| `auto_start_machines` | `false` | No Fly Proxy auto-start needed (private access via Tailscale) |
-| `[[restart]] policy` | `"always"` | Automatically restart on unexpected exit |
-| `[[vm]]` | `shared-cpu-1x` / `1gb` | Explicit machine sizing for predictable behavior |
+| `[[restart]] policy` | `"always"` | Automatically restart on unexpected exit (unlimited retries) |
+| `[[vm]]` | `shared-cpu-1x` | Explicit machine sizing (256 MB) |
 
 ### Secrets
 
