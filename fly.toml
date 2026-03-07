@@ -3,16 +3,6 @@ primary_region = "fra"
 kill_signal = "SIGINT"
 kill_timeout = 10
 
-[checks]
-  [checks.portainer]
-    port = 9000
-    type = "http"
-    method = "GET"
-    path = "/api/status"
-    interval = "30s"
-    timeout = "5s"
-    grace_period = "15s"
-
 [[restart]]
   policy = "always"
 
