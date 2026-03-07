@@ -25,7 +25,6 @@ This deploys [Portainer CE](https://www.portainer.io/) on [Fly.io](https://fly.i
 | `auto_start_machines` | `false` | No Fly Proxy auto-start needed (private access via Tailscale) |
 | `[[restart]] policy` | `"always"` | Automatically restart on unexpected exit |
 | `[[vm]]` | `shared-cpu-1x` / `1gb` | Explicit machine sizing for predictable behavior |
-| `[checks.portainer]` | TCP on port 9000 | Health monitoring for the Portainer service |
 
 ### Secrets
 

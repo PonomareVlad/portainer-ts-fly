@@ -20,14 +20,6 @@ kill_timeout = 10
     hard_limit = 100
     soft_limit = 75
 
-[checks]
-  [checks.portainer]
-    port = 9000
-    type = "tcp"
-    interval = "30s"
-    timeout = "5s"
-    grace_period = "15s"
-
 [[restart]]
   policy = "always"
   retries = 3
