@@ -31,7 +31,7 @@ Portainer binds to localhost only and is exposed exclusively via Tailscale, so t
    fly deploy
    ```
 
-Once deployed, the Portainer UI will be available on your Tailnet at `https://portainer`.
+Once deployed, the Portainer UI will be available on your Tailnet at `https://<your-node-name>.ts.net` (or at `https://portainer` if you have MagicDNS or an appropriate DNS search domain configured).
 
 ## How it works
 
