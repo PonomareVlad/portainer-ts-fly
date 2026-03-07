@@ -13,4 +13,10 @@ ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 /app/tailscale up --auth-key=${TAILSCALE_AUTHKEY} --hostname=portainer --advertise-exit-node --ssh
 /app/tailscale serve --bg 9000
 
-exec /portainer --http-enabled --bind "127.0.0.1:9000" --bind-https "127.0.0.1:9443"
+PORTAINER_ARGS="--http-enabled --bind 127.0.0.1:9000"
+
+if [ "${PORTAINER_HTTPS_DISABLED}" != "true" ]; then
+  PORTAINER_ARGS="${PORTAINER_ARGS} --bind-https 127.0.0.1:9443"
+fi
+
+exec /portainer ${PORTAINER_ARGS}
