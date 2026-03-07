@@ -5,21 +5,18 @@
 
 app = 'portainer-ts-fly'
 primary_region = 'fra'
-kill_signal = "SIGINT"
-kill_timeout = 10
+swap_size_mb = 256
 
 [[restart]]
   policy = "always"
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
+  memory = '256mb'
+  cpu_kind = 'shared'
+  size = 'shared-cpu-1x'
+  persist_rootfs = "always"
 
 [deploy]
   strategy = "immediate"
-
-[mounts]
-  source = "portainer_data"
-  destination = "/data"
