@@ -1,7 +1,7 @@
 app = "portainer-ts-fly"
 primary_region = "fra"
 kill_signal = "SIGINT"
-kill_timeout = "5s"
+kill_timeout = 10
 
 [env]
   PORT = "41641"
@@ -9,16 +9,32 @@ kill_timeout = "5s"
 [[services]]
   protocol = "udp"
   internal_port = 41641
-  processes = ["app"]
-  auto_stop_machines = false
+  auto_stop_machines = "off"
   auto_start_machines = false
 
   [[services.ports]]
     port = 41641
+
   [services.concurrency]
     type = "connections"
     hard_limit = 100
     soft_limit = 75
+
+[checks]
+  [checks.portainer]
+    port = 9000
+    type = "tcp"
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "15s"
+
+[[restart]]
+  policy = "always"
+  retries = 3
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"
 
 [deploy]
   strategy = "immediate"
