@@ -5,19 +5,21 @@
 
 app = 'portainer-ts-fly'
 primary_region = 'fra'
-
-[build]
-
-[http_service]
-  internal_port = 8080
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+kill_signal = "SIGINT"
+kill_timeout = 10
 
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
+
+[[restart]]
+  policy = "always"
+
+[deploy]
+  strategy = "immediate"
+
+[mounts]
+  source = "portainer_data"
+  destination = "/data"
