@@ -8,14 +8,14 @@ primary_region = 'fra'
 kill_signal = "SIGINT"
 kill_timeout = 10
 
+[[restart]]
+  policy = "always"
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
   memory_mb = 256
-
-[[restart]]
-  policy = "always"
 
 [deploy]
   strategy = "immediate"
