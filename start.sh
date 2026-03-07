@@ -11,6 +11,6 @@ ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 
 /app/tailscaled --state=/data/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock --port 41641 &
 /app/tailscale up --auth-key=${TAILSCALE_AUTHKEY} --hostname=portainer --advertise-exit-node --ssh
-/app/tailscale serve --bg 9000
+/app/tailscale serve --bg https+insecure://localhost:9443
 
-exec /portainer --http-enabled --bind "127.0.0.1:9000" --bind-https "127.0.0.1:9443"
+exec /portainer --http-disabled --bind-https "127.0.0.1:9443" --tunnel-addr "127.0.0.1"
